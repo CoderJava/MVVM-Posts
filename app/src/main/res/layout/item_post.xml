@@ -3,34 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.ysn.mvvmposts.ui.post.PostListViewModel" />
+            type="com.ysn.mvvmposts.ui.post.PostViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/post_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:mutableVisibility="@{viewModel.getLoadingVisibility()}" />
+            app:mutableText="@{viewModel.getPostTitle()}" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/post_list"
+        <TextView
+            android:id="@+id/post_body"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:adapter="@{viewModel.getPostListAdapter()}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/post_title"
+            app:mutableText="@{viewModel.getPostBody()}" />
 
     </android.support.constraint.ConstraintLayout>
-
 </layout>

@@ -16,6 +16,7 @@ class PostListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPostListBinding
     private lateinit var viewModel: PostListViewModel
     private var errorSnackbar: Snackbar? = null
+    val postListAdapter: PostListAdapter = PostListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,4 +44,5 @@ class PostListActivity : AppCompatActivity() {
     private fun hideError() {
         errorSnackbar?.dismiss()
     }
+
 }
