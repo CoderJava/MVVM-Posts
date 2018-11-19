@@ -10,13 +10,13 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import com.ysn.mvvmposts.R
 import com.ysn.mvvmposts.databinding.ActivityPostListBinding
+import com.ysn.mvvmposts.injection.ViewModelFactory
 
 class PostListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPostListBinding
     private lateinit var viewModel: PostListViewModel
     private var errorSnackbar: Snackbar? = null
-    val postListAdapter: PostListAdapter = PostListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class PostListActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_post_list)
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(PostListViewModel::class.java)
         viewModel.errorMessage.observe(this, Observer {
             if (it != null) {
                 showError(it)
